@@ -1,0 +1,25 @@
+
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    volumes:
+      - './api:/app'  
+    ports:
+      - 8000:8000
+    profiles: ["bidbot"]
+
+  ui:
+      build:
+        context: ./ui
+        dockerfile: Dockerfile
+      ports:
+        - 3000:3000
+      profiles: ["bidbot"]
+      depends_on:
+        - api    
+   
+  
